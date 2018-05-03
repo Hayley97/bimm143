@@ -1,0 +1,173 @@
+---
+title: "Class7"
+author: "Hayley Macleod"
+date: "24 April 2018"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+##Functions
+
+Revisit our function from class 6 
+
+```{r}
+source("http://tinyurl.com/rescale-R")
+```
+
+Lets see if we can use this function 
+
+```{r}
+rescale(1:10)
+```
+
+Lets break it 
+```{r}
+#rescale( c(1:10, "string") )
+```
+
+Lets try the new **rescale2()** function 
+```{r}
+rescale2( c(1:10, "string") )
+```
+
+
+##Write a NA checking function 
+
+Here we write a new function to check for NAs in two inputs 
+
+```{r}
+x <- c( 1, 2, NA, 3, NA)
+y <- c(NA, 3, NA, 3, 4)
+is.na(x)
+```
+
+```{r}
+which( is.na(x) )
+```
+
+```{r}
+is.na(x)
+is.na(y) 
+
+```
+```{r}
+( is.na(x) & is.na(y) )
+
+```
+
+
+```{r}
+sum( is.na(x) & is.na(y) )
+
+```
+
+This is both_na() function starting point 
+
+```{r}
+both_na <- function(x, y) {
+ sum( is.na(x) & is.na(y) )
+}
+```
+Test it 
+```{r}
+both_na(x,y)
+```
+
+```{r}
+both_na(x,y2)
+```
+
+```{r}
+both_na2 <- function(x, y) {
+ if(length(x) != length(y)) {
+ stop("Input x and y should be the same length")
+ }
+ sum( is.na(x) & is.na(y) )
+}
+```
+
+.. ! = .. Is this thing not equal to this thing
+
+
+```{r}
+x <- c( 1, 2, NA, 3, NA)
+y <- c(NA, 3, NA, 3, 4)
+
+ans <- both_na3(x, y)
+```
+
+##Another function example: gene expression 
+
+```{r}
+df1
+df2
+
+x <- df1$IDs
+y <- df2$IDs
+```
+
+```{r}
+x
+y
+```
+
+```{r}
+intersect(x, y)
+
+x %in% y
+```
+
+```{r}
+y %in% x
+```
+
+```{r}
+x[x %in% y]
+```
+
+
+```{r}
+y[y %in% x]
+```
+
+```{r}
+cbind( x[ x %in% y ], y[ y %in% x ] )
+```
+
+
+
+```{r}
+gene_intersect <- function(x, y) {
+  cbind( x[ x %in% y ], y[ y %in% x ] )
+}
+```
+
+
+
+```{r}
+gene_intersect2 <- function(df1, df2) {
+ cbind( df1[ df1$IDs %in% df2$IDs, ],
+ df2[ df2$IDs %in% df1$IDs, “exp"] )
+}
+```
+
+
+```{r}
+merge(df1, df2, by="IDs")
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
