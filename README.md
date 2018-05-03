@@ -1,3 +1,5 @@
 # bimm143
 
-This is my Bioinformatics class from UC San Diego in S18
+This is the bioinformatics class from UCSD S18
+
+I did it!
