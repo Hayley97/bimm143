@@ -25,3 +25,20 @@ write.pdb(prot, file="1hsg_protein.pdb")
 write.pdb(lig, "1hsg_ligand.pdb")
 ```
 
+
+##Process docking results for VMD display 
+```{r}
+library(bio3d) 
+res <- read.pdb("", multi=TRUE)
+write.pdb(res, "results.pdb")
+```
+
+```{r}
+inds.res <- atom.select(res, "noh")
+inds.res
+```
+
+```{r}
+#res$xyz[], 
+```
+
